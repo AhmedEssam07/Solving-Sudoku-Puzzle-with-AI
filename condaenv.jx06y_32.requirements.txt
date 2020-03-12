@@ -1,2 +1,0 @@
-udacity-pa>=0.2
-z3-solver
