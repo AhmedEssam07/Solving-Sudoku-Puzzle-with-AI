@@ -19,8 +19,8 @@ Follow the instructions in the classroom lesson to install and configure the AIN
 
 ### Activate the aind environment (Windows)
 #### Create the Environment
-* Download the aind-universal.yml file at the bottom of this page (right click, save file). NOTE: Some browsers will automatically append a ".txt" extension to the yml file; if your browser does this, then you will need to remove the extension or alter the creation command to correct it.
-* Open a terminal and run conda env create -f aind-universal-v3.yml to create the environment.
+* Download the `aind-universal.yml` file at the bottom of this page (right click, save file). __NOTE__: Some browsers will automatically append a ".txt" extension to the yml file; if your browser does this, then you will need to remove the extension or alter the creation command to correct it.
+* Open a terminal and run `conda env create -f aind-universal-v3.yml` to create the environment.
 * Activate the environment
     `> activate aind`
 
