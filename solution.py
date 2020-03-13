@@ -77,12 +77,13 @@ def eliminate(values):
         The values dictionary with the assigned values eliminated from peers
     """
     # TODO: Copy your code from the classroom to complete this function
-    for currkey in values:
-        currval = values[currkey]
-        if len(currval) == 1:
-            for peer in peers[currkey]:
-                values[peer] = values[peer].replace(currval,'')
+    solved_values = [box for box in values.keys() if len(values[box]) == 1]
+    for box in solved_values:
+        digit = values[box]
+        for peer in peers[box]:
+            values[peer] = values[peer].replace(digit,'')
     return values
+
 
 
 def only_choice(values):
@@ -108,9 +109,9 @@ def only_choice(values):
     # TODO: Copy your code from the classroom to complete this function
     for unit in unitlist:
         for digit in '123456789':
-            boxeswithdigit = [box for box in unit if digit in values[box]]
-            if len(boxeswithdigit) == 1:
-                values[boxeswithdigit[0]] = digit
+            dplaces = [box for box in unit if digit in values[box]]
+            if len(dplaces) == 1:
+                values[dplaces[0]] = digit
     return values
 
 
