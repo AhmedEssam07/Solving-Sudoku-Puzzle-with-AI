@@ -173,5 +173,61 @@ def grid_values(grid):
     assert len(grid) == 81, "Input grid must be a string of length 81 (9x9)"
     return dict(zip(boxes, grid))
 ```
+
+## 5.Strategy 1: Elimination
+
+**Insight: We can eliminate possible values for a box by looking at its peers**
+Ok, time to start solving the Sudoku!
+First things first, let's look at a box and analyze the values that could go in there.
+What values are available for the red highlighted box in the following puzzle?
+
+<img src="./images/reduce-values.png" width="400"/>
+
+Solution: 4,7
+The possible values are 4 and 7. What did we do to figure this out? Well, all the other values already appear either in the same column, row, or 3x3 square of the highlighted box, so we conclude that they can't be a value for this box. In other words, we used the following strategy.
+### Strategy 1: Elimination
+If a box has a value assigned, then none of the peers of this box can have this value. For example in the following figure (left) we have a box having value 7, so all of its peers shouldn't have value 7 (Not7). The figure at right shows the elimination process, for spcific box, we search in its peer and eliminate any number appears in its peers. for example the red box can't contain 1,2,3, etc. it can only contain 4. Whenever we find a value in the box's peers we **eliminate** it from the list of (1,2,3,4,5,6,7,8,9). The remaining values after elimination is the candidate box's value. 
+
+<img src="./images/elimination-possibilities.png"/>
+
+Now that we know how to eliminate values, we can take one pass, go over every box that has a value, and eliminate the values that can't appear on the box, based on its peers. Once we do so, the board looks like this (for clarity, we've highlighted the original filled-in boxes in bold lettering):
+
+(Notice that if we take a second pass through the puzzle, we can gain even more information, but this is not necessary for now.)
+
+<img src="./images/values-easy.png" width="400" />
+
+This seems like something we can code!
+
+### Improved `grid_values()`
+
+As of now, we are recording the puzzles in dictionary form, where the keys are the boxes `('A1', 'A2', ... , 'I9')` and the values are either the value for each box (if a value exists) or `'.'` (if the box has no value assigned yet). What we really want is for each value to represent all the available values for that box. For example, the box in the second row and fifth column above will have key `'B5'` and value `'47'` (because `4` and `7` are the only possible values for it). The starting value for every empty box will thus be `'123456789'`.
+
+Update the `grid_values()` function to return `'123456789'` instead of `'.'` for empty boxes.
+
+```python
+from utils import *
+
+def grid_values(grid):
+    """Convert grid string into {<box>: <value>} dict with '123456789' value for empties.
+
+    Args:
+        grid: Sudoku grid in string form, 81 characters long
+    Returns:
+        Sudoku grid in dictionary form:
+        - keys: Box labels, e.g. 'A1'
+        - values: Value in corresponding box, e.g. '8', or '123456789' if it is empty.
+    """
+    values = []
+    all_digits = '123456789'
+    for c in grid:
+        if c == '.':
+            values.append(all_digits)
+        elif c in all_digits:
+            values.append(c)
+    assert len(values) == 81
+    return dict(zip(boxes, values))
+```
+
+function.py
 ## References
 Peter Norvig, Solve every sudoku puzzle [[blog]](http://norvig.com/sudoku.html)
