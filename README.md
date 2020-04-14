@@ -31,7 +31,7 @@ The solution of sudoku should follow the following rules:
 
 The puzzle is given as a partially completed grid, and the goal is to fill in the missing numbers. Below is an example of such a grid.
 
-<img src="./images/sudoku_easy_solution.png" width="400">
+<img src="./images/sudoku_easy_solution.png" width="400"/>
 
 ### Naming Conventions
 #### Rows and Columns
