@@ -56,6 +56,16 @@ Let's test your understanding! For any box, how many peers are there?
 Answer (20)
 
 ## 4.Encoding the Board
+Now, in order to implement an agent, let's start by coding the board in Python. Then, we'll code the necessary functions to solve the Sudoku. We'll record the puzzles in two ways — as a `string` and as a `dictionary`.
+The string will consist of a concatenation of all the readings of the digits in the rows, taking the rows from top to bottom. If the puzzle is not solved, we can use a `.` as a placeholder for an empty box.
+
+For example, the unsolved puzzle at the above left will be written as: `..3.2.6..9..3.5..1..18.64....81.29..7.......8..67.82....26.95..8..2.3..9..5.1.3..`
+
+And the solved puzzle at the above right, will be recorded as: **_483921657967345821251876493548132976729564138136798245372689514814253769695417382_**
+
+We'll implement the dictionary as follows. The keys will be strings corresponding to the boxes — namely, 'A1', 'A2', ..., 'I9'. The values will either be the digit in each box (if there is one) or a `'.'` (if not).
+
+So, let's get started. First, we'll record rows and columns as strings.
                                          
 ## References
 Peter Norvig, Solve every sudoku puzzle [[blog]](http://norvig.com/sudoku.html)
