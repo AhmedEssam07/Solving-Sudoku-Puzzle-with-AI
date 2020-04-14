@@ -10,7 +10,8 @@ We will build an agent with python that will solve any sudoku. It is abased on P
 ## 2.Solving a sudoku
 ### What is a Sudoku?
 [Sudoku](https://en.wikipedia.org/wiki/Sudoku) is one of the world's most popular puzzles. It consists of a 9x9 grid, and the objective is to fill the grid with digits in such a way that each row, each column, and each of the 9 principal 3x3 subsquares contains all of the digits from 1 to 9. The detailed rules can be found, for example, [here](http://www.conceptispuzzles.com/?uri=puzzle/sudoku/rules). The puzzle is given as a partially completed grid, and the goal is to fill in the missing numbers. Below is an example of such a grid.
-<img src="./images/an_example_of_sudoku_grid.png" alt="sudoku puzzle" style="width:100px;height:100px"/>
+<img src="./images/an_example_of_sudoku_grid.png" alt="sudoku puzzle" width="500"/>
+
 ### Goals of this project
 The main goal of this project is to build an intelligent agent that will solve every sudoku while introducing you to two powerful techniques that are used throughout the field of AI:
 
