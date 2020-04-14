@@ -198,11 +198,14 @@ Now that we know how to eliminate values, we can take one pass, go over every bo
 
 This seems like something we can code!
 
-### Improved `grid_values()`
+### Exercise: Improved `grid_values()`
 
 As of now, we are recording the puzzles in dictionary form, where the keys are the boxes `('A1', 'A2', ... , 'I9')` and the values are either the value for each box (if a value exists) or `'.'` (if the box has no value assigned yet). What we really want is for each value to represent all the available values for that box. For example, the box in the second row and fifth column above will have key `'B5'` and value `'47'` (because `4` and `7` are the only possible values for it). The starting value for every empty box will thus be `'123456789'`.
 
 Update the `grid_values()` function to return `'123456789'` instead of `'.'` for empty boxes.
+
+### Solution
+The following is the function for elimination. 
 
 ```python
 from utils import *
@@ -228,6 +231,5 @@ def grid_values(grid):
     return dict(zip(boxes, values))
 ```
 
-function.py
 ## References
 Peter Norvig, Solve every sudoku puzzle [[blog]](http://norvig.com/sudoku.html)
