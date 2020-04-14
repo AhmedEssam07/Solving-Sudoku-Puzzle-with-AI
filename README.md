@@ -230,6 +230,43 @@ def grid_values(grid):
     assert len(values) == 81
     return dict(zip(boxes, values))
 ```
+So, from now on, we'll think of the puzzles in this way. Thus, the puzzle in the last section will look like this (in dictionary form):
+```python
+{
+    'A1': '123456789',
+    'A2': '123456789',
+    'A3': '3',
+    'A4': '123456789'
+    'A5': '2',
+    ...
+    'I9': '123456789'
+}
+```
+### Exercise: Implement `eliminate()`
+Now, let's finish the code for the function `eliminate()`, which will take as input a puzzle in dictionary form. The function will iterate over all the boxes in the puzzle that only have one value assigned to them, and it will remove this value from every one of its peers.
 
+### Exercise Solution:
+Here is the python solution
+```python
+from utils import *
+
+def eliminate(values):
+    """Eliminate values from peers of each box with a single value.
+
+    Go through all the boxes, and whenever there is a box with a single value,
+    eliminate this value from the set of values of all its peers.
+
+    Args:
+        values: Sudoku in dictionary form.
+    Returns:
+        Resulting Sudoku in dictionary form after eliminating values.
+    """
+    solved_values = [box for box in values.keys() if len(values[box]) == 1]
+    for box in solved_values:
+        digit = values[box]
+        for peer in peers[box]:
+            values[peer] = values[peer].replace(digit,'')
+    return values
+```
 ## References
 Peter Norvig, Solve every sudoku puzzle [[blog]](http://norvig.com/sudoku.html)
