@@ -51,7 +51,11 @@ And let's start naming the important elements created by these rows and columns 
 Let's see an example. In the grids below, the set of highlighted boxes represent units. Each grid shows a different peer of the box at E3.
 
 <img src="./images/peers.png"/>
-                                         
+
+Let's test your understanding! For any box, how many peers are there?
+Answer (20)
+
+## 4.Encoding the Board
                                          
 ## References
 Peter Norvig, Solve every sudoku puzzle [[blog]](http://norvig.com/sudoku.html)
