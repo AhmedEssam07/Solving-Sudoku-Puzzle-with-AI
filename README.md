@@ -22,8 +22,14 @@ When trying to solve a problem, you'll find that there are some local constraint
 In the process of problem solving, we may get to the point where two or more possibilities are available. What do we do? What if we branch out and consider both of them? Maybe one of them will lead us to a position in which three or more possibilities are available. Then, we can branch out again. At the end, we can create a whole tree of possibilities and find ways to traverse the tree until we find our solution. This is an example of how search can be used.
 These ideas may seem simple and they're actually intended to be! Through this lesson you'll see how AI is really composed of very simple ideas that can be put together to solve complex problems. Throughout this lesson, we challenge you to think of how you can apply these ideas to build AI agents to solve other puzzles and problems in your world!
 
+## 3. Setting up the Board
+### Sudoku: Solution
+The solution of sudoku should follow the following rules:
 
+* If a box has a value, then all the boxes in the same row, same column, or same 3x3 square cannot have that same value.
+* If there is only one allowed value for a given box in a row, column, or 3x3 square, then the box is assigned that value.
 
 The puzzle is given as a partially completed grid, and the goal is to fill in the missing numbers. Below is an example of such a grid.
+
 ## References
 Peter Norvig, Solve every sudoku puzzle [[blog]](http://norvig.com/sudoku.html)
