@@ -47,8 +47,11 @@ And let's start naming the important elements created by these rows and columns 
 * The individual squares at the intersection of rows and columns will be called `boxes`. These boxes will have labels 'A1', 'A2', ..., 'I9'.
 * The complete rows, columns, and 3x3 squares, will be called `units`. Thus, each unit is a set of 9 boxes, and there are 27 units in total.
 * For a particular box (such as 'A1'), its `peers` will be all other boxes that belong to a common unit (namely, those that belong to the same row, column, or 3x3 square).
+
 Let's see an example. In the grids below, the set of highlighted boxes represent units. Each grid shows a different peer of the box at E3.
 
-
+<img src="./images/peers.png height="400"/>
+                                         
+                                         
 ## References
 Peter Norvig, Solve every sudoku puzzle [[blog]](http://norvig.com/sudoku.html)
