@@ -310,6 +310,68 @@ def only_choice(values):
                 values[dplaces[0]] = digit
     return values
 ```
+## 7.Constraint Propagation
+If you've made it this far, you've already gained hands on exposure to a powerful technique in AI - Constraint Propagation. Constraint Propagation is all about using local constraints in a space (in the case of Sudoku, the constraints of each square) to dramatically reduce the search space. As we enforce each constraint, we see how it introduces new constraints for other parts of the board that can help us further reduce the number of possibilities. We have an entire lesson devoted to Constraint Propagation but let's quickly see some other famous AI problems it helps us solve.
 
+Map Coloring
+
+<img src="./images/aust-map.jpg" width="400" />
+
+No two adjacent items can be the same color in the map coloring problem.
+
+In the map coloring problem, we must find a way to color the map such that no two adjacent items share the same color. Indeed, we'll see how we use constraint propagation to use this simple constraint to find a solution just as we use such constraints to solve Sudoku.
+
+Crypto-Arithmetic Puzzles
+
+<img src="./images/two+two.png" width="400" />
+
+In the above, what digits do T, W, O, F, U, and R represent?
+
+In Crypto-Arithmetic puzzles, each letter represents a digit, and no two letters represent the same digit. None of the numbers start with a leading zero. Our goal is to find a mapping from letters to digits that satisfies the equations. Here again, we'll find that the constraints imposed by the equation allow us to create an intelligent algorithm to solve the problem via Constraint Propagation.
+
+### Applying Constraint Propagation to Sudoku
+So far we applied two `constraint`s namely
+* Elimination 
+* Only Choice
+To solve the problem we can apply them repeatedly (`propagation`), we can start with the original grid, pick a box and apply `eliminate`. This takes us to more complete grid. Then, from this new grid we can pick any unit and apply `only choice`. This leads us to more complete grid. Applying these repeatedly may lead us to final solution, or get stuck any where. 
+
+<img src="./images/const-prop.png" />
+
+### Exercise
+Now that you see how we apply Constraint Propagation to this problem, let's try to code it! In this exercise, combine the functions `eliminate` and `only_choice` to write the function `reduce_puzzle`, which receives as input an unsolved puzzle and applies our two constraints repeatedly in an attempt to solve it.
+
+Some things to watch out for:
+
+* The function needs to stop if the puzzle gets solved. How to do this?
+* What if the function doesn't solve the sudoku? Can we make sure the function quits when applying the two strategies stops making progress?
+
+### Solution 
+The following python code do this job
+```python
+def reduce_puzzle(values):
+    """
+    Iterate eliminate() and only_choice(). If at some point, there is a box with no available values, return False.
+    If the sudoku is solved, return the sudoku.
+    If after an iteration of both functions, the sudoku remains the same, return the sudoku.
+    Input: A sudoku in dictionary form.
+    Output: The resulting sudoku in dictionary form.
+    """
+    stalled = False
+    while not stalled:
+        # Check how many boxes have a determined value
+        solved_values_before = len([box for box in values.keys() if len(values[box]) == 1])
+        # Use the Eliminate Strategy
+        values = eliminate(values)
+        # Use the Only Choice Strategy
+        values = only_choice(values)
+        # Check how many boxes have a determined value, to compare
+        solved_values_after = len([box for box in values.keys() if len(values[box]) == 1])
+        # If no new values were added, stop the loop.
+        stalled = solved_values_before == solved_values_after
+        # Sanity check, return False if there is a box with zero available values:
+        if len([box for box in values.keys() if len(values[box]) == 0]):
+            return False
+    return values
+```
 ## References
 Peter Norvig, Solve every sudoku puzzle [[blog]](http://norvig.com/sudoku.html)
