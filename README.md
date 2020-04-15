@@ -283,7 +283,7 @@ So, we have another strategy!
 
 ### Exercise: Strategy 2 - Only Choice
 If there is only one box in a unit which would allow a certain digit, then that box must be assigned that digit.
-Time to code it! In the next quiz, finish the code for the function only_choice, which will take as input a puzzle in dictionary form. The function will go through all the units, and if there is a unit with a digit that only fits in one possible box, it will assign that digit to that box.
+Time to code it! In this exercise, finish the code for the function only_choice, which will take as input a puzzle in dictionary form. The function will go through all the units, and if there is a unit with a digit that only fits in one possible box, it will assign that digit to that box.
 
 <img src="./images/only-choice-box-arrows.png" width="400" />
 
