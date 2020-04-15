@@ -331,11 +331,13 @@ In Crypto-Arithmetic puzzles, each letter represents a digit, and no two letters
 
 ### Applying Constraint Propagation to Sudoku
 So far we applied two `constraint`s namely
+
 * Elimination 
 * Only Choice
+
 To solve the problem we can apply them repeatedly (`propagation`), we can start with the original grid, pick a box and apply `eliminate`. This takes us to more complete grid. Then, from this new grid we can pick any unit and apply `only choice`. This leads us to more complete grid. Applying these repeatedly may lead us to final solution, or get stuck any where. 
 
-<img src="./images/const-prop.png" />
+<img src="./images/const-prop.png" width="750" />
 
 ### Exercise
 Now that you see how we apply Constraint Propagation to this problem, let's try to code it! In this exercise, combine the functions `eliminate` and `only_choice` to write the function `reduce_puzzle`, which receives as input an unsolved puzzle and applies our two constraints repeatedly in an attempt to solve it.
@@ -373,5 +375,11 @@ def reduce_puzzle(values):
             return False
     return values
 ```
+
+So, that seemed to work! You should have got this answer.
+
+<img src="./images/sudoku-easy-solution.png" width="400" />
+
+
 ## References
 Peter Norvig, Solve every sudoku puzzle [[blog]](http://norvig.com/sudoku.html)
