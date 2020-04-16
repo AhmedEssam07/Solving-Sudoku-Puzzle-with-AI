@@ -380,6 +380,26 @@ So, that seemed to work! You should have got this answer.
 
 <img src="./images/sudoku-easy-solution.png" width="400" />
 
+## 8.Harder Sudoku
+Ok, let's see if our algorithm will work all the time. Here's a harder sudoku puzzle:
+
+<img src="./images/harder-puzzle.png" width="400"/>
+
+```python
+grid2 = '4.....8.5.3..........7......2.....6.....8.4......1.......6.3.7.5..2.....1.4......'
+values = grid_values(grid2)
+```
+
+When we apply reduce_puzzle, we get the following grid:
+
+<img src="./images/harder-sudoku-reduced.png" width="400"/>
+
+Oh no! The algorithm didn't solve it. It seemed to reduce every box to a number of possibilites, but it won't go farther than that. We need to think of other ways to improve our solution.
+
+## 9.Strategy 3: Search
+### Search
+We're now going to use another foundational AI technique to help us solve this problem: Search.
+
 
 ## References
 Peter Norvig, Solve every sudoku puzzle [[blog]](http://norvig.com/sudoku.html)
