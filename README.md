@@ -1,7 +1,7 @@
 # An AI Agent to Solve Any Sudoku Puzzle
 _Source: Udacity AI Nanodegree - Build a Sudoku Solver Project_
 
-_Reorganized by: Osama Hosameldeen_
+_Collected By: Osama Hosameldeen_
 
 ## 1.Introduction
 In this blog we will concentrate on two main concepts, constraint propagation and search. To learn these concepts, we will build an AI agent that will solve any sudoku puzzle. As you know sudoku puzzle consists of 9 x 9 square with each row, column and 3 x 3 subsquares containing the numbers from 1 to 9 appearing exactly once. Here is an example of suduku puzzle and the corresponding solution. 
