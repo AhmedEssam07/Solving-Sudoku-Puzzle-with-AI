@@ -398,7 +398,74 @@ Oh no! The algorithm didn't solve it. It seemed to reduce every box to a number 
 
 ## 9.Strategy 3: Search
 ### Search
-We're now going to use another foundational AI technique to help us solve this problem: Search.
+We're now going to use another foundational AI technique to help us solve this problem: Search. An example of Search being used in Google's AlphaGo [paper](https://storage.googleapis.com/deepmind-media/alphago/AlphaGoNaturePaper.pdf), is shown in the figure.
+
+<img src="./images/alpha-go.png" />
+
+Search is used throughout AI from Game-Playing to Route Planning to efficiently find solutions.
+
+Here's how we'll apply it. The box `'A2'` has four possibilities: 1, 6, 7, and 9. Why don't we fill it in with a 1 and try to solve our puzzle. If we can't solve it, we'll try with a 6, then with a 7, and then with a 9. Sure, it's four times as much work, but each one of the cases becomes easier.
+
+Actually, there's something a bit smarter than that. Looking carefully at the puzzle, is there a better choice for a box than `'A2'`?
+Among the four highlighted boxes above, which one seems like the best one to pick in order to look at all its possibilities?
+
+<img src="./images/choices.png" width="400" />
+
+That's right - we pick G2 because it has the fewest numbers to try out. another box is another candidate too, can you find it?
+you should pick one randomly, let's assume that G2 is picked to start with. 
+
+Now, we have to try to solve the sudoku first by using 8 and then by using 9. Accordingly, we will have tow branches in a very large tree. See figure below, part (a)
+
+<img src="./images/search-strategy.png" />
+
+For the left branch, (branch with '8') we pick another box and repeat the same algorithm. say we pick box '159' shown in the above figure (b), then we are able to branch into 3 branches one for each digit. branch for 1, another branch for 5,  and a third branch for 9. The tree is navigated from left to right. So branch 1 will be explored first, deeply explored until entirely finished, if there is no solution in that branch we move to right branches. This strategy of search is called **"depth first search"**
+So it seems that we have a new strategy!
+
+### Strategy 3: Depth First Search (DFS)
+Pick a box with a minimal number of possible values. Try to solve each of the puzzles obtained by choosing each of these values, recursively.
+Before we dive in to code the search function, let's first check our understanding. How would you traverse the following tree using Depth First Search?
+
+<img src="./images/bfs-quiz.png" width="400" />
+
+Traverse the above tree using Depth First Search. The answer should be the string obtained by the labels in the order you've traversed the tree. For example, if your tree has four vertices, A, B, C, D, and you've traversed them in the order B->C->A->D, then the answer should be the string 'BCAD'.
+
+And here's the answer! ABDEHIJCFGKL
+
+### Exercise: Coding DFS
+Time to code the final solution!
+Finish the code in the function `search`, which will create a tree of possibilities and traverse it using DFS until it finds a solution for the sudoku puzzle.
+
+### Solution
+Here is a python code for traversing the sudoku tree with DFS. 
+```python
+from utils import *
+
+def search(values):
+    "Using depth-first search and propagation, try all possible values."
+    # First, reduce the puzzle using the previous function
+    values = reduce_puzzle(values)
+    if values is False:
+        return False ## Failed earlier
+    if all(len(values[s]) == 1 for s in boxes): 
+        return values ## Solved!
+    # Choose one of the unfilled squares with the fewest possibilities
+    n,s = min((len(values[s]), s) for s in boxes if len(values[s]) > 1)
+    # Now use recurrence to solve each one of the resulting sudokus, and 
+    for value in values[s]:
+        new_sudoku = values.copy()
+        new_sudoku[s] = value
+        attempt = search(new_sudoku)
+        if attempt:
+            return attempt
+```
+So, that seemed to do it! You should have got the following solution.
+
+<img src="./images/hard-solution.png" width="400" />
+
+## 10. More powerful sudoku: Diagonal Sudoku
+In udacity's sudoku project, you will extend the Sudoku-solving agent developed here to solve diagonal Sudoku puzzles. A diagonal Sudoku puzzle is identical to traditional Sudoku puzzles with the added constraint that the boxes on the two main diagonals of the board must also contain the digits 1-9 in each cell (just like the rows, columns, and 3x3 blocks). You will also implement another strategy called "Naked Twins", described [here](http://www.sudokudragon.com/tutorialnakedtwins.htm).
+
+<img src="./images/sudokustrategy.png" />
 
 
 ## References
