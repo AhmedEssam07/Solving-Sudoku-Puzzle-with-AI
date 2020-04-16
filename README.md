@@ -465,7 +465,7 @@ So, that seemed to do it! You should have got the following solution.
 ## 10. More powerful sudoku: Diagonal Sudoku
 In udacity's sudoku project, you will extend the Sudoku-solving agent developed here to solve diagonal Sudoku puzzles. A diagonal Sudoku puzzle is identical to traditional Sudoku puzzles with the added constraint that the boxes on the two main diagonals of the board must also contain the digits 1-9 in each cell (just like the rows, columns, and 3x3 blocks). You will also implement another strategy called "Naked Twins", described [here](http://www.sudokudragon.com/tutorialnakedtwins.htm).
 
-<img src="./images/sudokustrategy.png" />
+<img src="./images/naked-twins.png" />
 
 
 ## References
