@@ -470,6 +470,50 @@ In udacity's sudoku project, you will extend the Sudoku-solving agent developed 
 
 <img src="./images/naked-twins.png" />
 
+### Exercise: Implement the Naked Twins algorithm
+Implement a function to execute the naked twins algorithm. In which the main two diagonal has the same restrections of the row, columns and square units. The digits from 1 to 9 appears exactly once in each diagonal. 
+### Solution
+The following python code implements the naked twins algorithm
+```python
+def naked_twins(values):
+    """Eliminate values using the naked twins strategy.
+
+    Parameters
+    ----------
+    values(dict)
+        a dictionary of the form {'box_name': '123456789', ...}
+
+    Returns
+    -------
+    dict
+        The values dictionary with the naked twins eliminated from peers
+
+    Notes
+    -----
+    Your solution can either process all pairs of naked twins from the input once,
+    or it can continue processing pairs of naked twins until there are no such
+    pairs remaining -- the project assistant test suite will accept either
+    convention. However, it will not accept code that does not process all pairs
+    of naked twins from the original input. (For example, if you start processing
+    pairs of twins and eliminate another pair of twins before the second pair
+    is processed then your code will fail the PA test suite.)
+
+    The first convention is preferred for consistency with the other strategies,
+    and because it is simpler (since the reduce_puzzle function already calls this
+    strategy repeatedly).
+    """
+    # TODO: Implement this function!
+    two_item_boxes = [box for box in values if len(values[box]) == 2]
+
+    naked_twins = [(box1,box2) for box1 in two_item_boxes for box2 in peers[box1] if sorted(values[box1]) == sorted(values[box2])]
+    for twins in naked_twins:
+        common_peers = set(peers[twins[0]]).intersection(peers[twins[1]])
+        for peer in common_peers:
+            for val in values[twins[0]]:
+                values[peer] = values[peer].replace(val,'')
+    
+    return values
+```
 
 ## References
 Peter Norvig, Solve every sudoku puzzle [[blog]](http://norvig.com/sudoku.html)
